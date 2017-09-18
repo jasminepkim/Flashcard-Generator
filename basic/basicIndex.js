@@ -12,7 +12,7 @@ Questions.forEach(function (question){
     cards.push(new BasicCard(question.front, question.back));
 })
 
-console.log('cards',cards);
+// console.log('cards',cards);
 // Call the play function to play the game 
 play();
 
@@ -24,7 +24,7 @@ function play() {
     var i = 0;
 
     function questionAsker () {
-        console.log('front',cards[i].front)
+        // console.log('front',cards[i].front)
         inquirer.prompt({
             type: 'input',
             name: 'user',
@@ -32,7 +32,7 @@ function play() {
         }).then(function (answer) {
             i++;
             if (i < cards.length) { // theres more questions
-                console.log(i, answer);
+                // console.log(i, answer);
                 questionAsker();
             }
         });
