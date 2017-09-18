@@ -1,6 +1,4 @@
-console.log('Load BASIC Q&A');
-
-[
+var Questions = [
     {
         'front': 'Are humans omnivore, herbivore, or carnivore?',
         'back': 'Omnivore'
@@ -26,3 +24,5 @@ console.log('Load BASIC Q&A');
         'back': 'Spain'
     }
 ]
+
+module.exports = Questions;

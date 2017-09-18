@@ -1,5 +1,3 @@
-console.log('Load BASIC module');
-
 function BasicCard (front, back) {
     this.front = front;
     this.back = back;
