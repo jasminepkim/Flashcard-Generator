@@ -4,7 +4,8 @@ var Questions = require('./basicQA.js');
 var inquirer = require('inquirer');
 var fs = require('fs');
 // global score counter
-var score = 0;
+var correctScore = 0;
+var incorrectScore = 0;
 var cards = [];
 
 Questions.forEach(function (question) {
@@ -28,20 +29,28 @@ function play() {
             message: cards[i].front
 
         }).then(function (answer) {
-            i++;
+            var input = answer.user.toUpperCase();
 
             if (i < cards.length) {
-                console.log("Your current score is: " + score);
 
-                if (answer === cards[i].back) {
+                if (input === cards[i].back.toUpperCase()) {
                     console.log("Great job, you are correct!");
-                    score++;
+                    correctScore++;
+                    console.log("\--------------------------------");
                 } else {
                     console.log("Sorry, you are incorrect. The correct answer is: " + cards[i].back);
-                    score--;
+                    incorrectScore++;
+                    console.log("\--------------------------------");
                 }
+                i++;
                 questionAsker();
             }
+            // to end the game
+        }).catch(function () {
+            console.log("Thanks for playing, and see your total scores below:");
+            console.log("\--------------------------------");
+            console.log("\Correct: " + correctScore + " || Incorrect: " + incorrectScore);
+            console.log("\--------------------------------");
         });
     }
     questionAsker();
