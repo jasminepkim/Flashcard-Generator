@@ -7,43 +7,42 @@ var fs = require('fs');
 var score = 0;
 var cards = [];
 
-
-Questions.forEach(function (question){
+Questions.forEach(function (question) {
     cards.push(new BasicCard(question.front, question.back));
 })
 
-// console.log('cards',cards);
+// console.log('cards', cards);
+
 // Call the play function to play the game 
 play();
-
-// console.log(Questions[0].front);
-// console.log(Questions[0].back);
 
 function play() {
     // var to hold questions to increment
     var i = 0;
 
-    function questionAsker () {
+    function questionAsker() {
         // console.log('front',cards[i].front)
         inquirer.prompt({
-            type: 'input',
-            name: 'user',
+            type: "input",
+            name: "user",
             message: cards[i].front
+
         }).then(function (answer) {
             i++;
-            if (i < cards.length) { // theres more questions
-                // console.log(i, answer);
+
+            if (i < cards.length) {
+                console.log("Your current score is: " + score);
+
+                if (answer === cards[i].back) {
+                    console.log("Great job, you are correct!");
+                    score++;
+                } else {
+                    console.log("Sorry, you are incorrect. The correct answer is: " + cards[i].back);
+                    score--;
+                }
                 questionAsker();
             }
         });
     }
     questionAsker();
-
-    // inquirer.prompt({
-    //     type: 'input',
-    //     name: 'user',
-    //     message: 'Question: ' + JSON.stringify(Questions[i].front)
-    // });
-
-
 } // to close out the PLAY function
